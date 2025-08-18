@@ -28,7 +28,7 @@ import {
 
 const Header = () => {
   return (
-    <header className="flex justify-between items-center px-6 h-20 border-b border-gray-800 bg-black">
+    <header className="flex justify-between items-center px-6 h-20 border-b border-gray-800 bg-black/30">
       {/* Logo Left */}
       <Link href="/" className="flex items-center gap-2">
         <Image

@@ -1,9 +1,10 @@
-import { Button } from "@/components/ui/button"
+import HeroSection from "@/components/dashboard_components/HeroSection";
 
 export default function Home() {
   return (
     <div>
-      <Button>Click me</Button>
+      <HeroSection />
+      <div className="grid-background min-h-screen flex items-center justify-center"></div>
     </div>
-  )
+  );
 }
