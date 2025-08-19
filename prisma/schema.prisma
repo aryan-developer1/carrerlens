@@ -1,0 +1,95 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String           @id @default(uuid())
+  clerkId         String           @unique
+  email           String           @unique
+  name            String?
+  imageUrl        String?
+  industry        String?
+  IndustryInsight IndustryInsights @relation(fields: [industry], references: [industry])
+  bio             String?
+  skills          String[]
+  experience      Int?
+  assessments     String[]
+  resume          String?
+  coverLetter     String[]
+}
+
+model Assessments {
+  id             String   @id @default(uuid()) // Unique quiz ID
+  userId         String // Foreign key to User
+  user           User     @relation(fields: [userId], references: [id]) // Relation to User
+  quizScore      Float // Overall quiz score
+  questions      Json[] // Array of {question, answer, userAnswer, isCorrect}
+  category       String // "Technical", "Behavioral", etc.
+  improvementTip String? // AI-generated improvement tip
+  createdAt      DateTime @default(now()) // Record creation time
+  updatedAt      DateTime @updatedAt // Record update time
+
+  @@index([userId]) // Index for faster queries by userId
+}
+
+model Resume {
+  id String @id @default(uuid())
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CoverLetter {
+  id String @id @default(uuid())
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  content   String
+  jobDescription String?
+  companyName String
+  jobTitle String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId]) // Index for faster queries by userId
+}
+
+model IndustryInsights {
+  id String @id @default(uuid())
+  industry String @unique
+  users User[]
+  salaryRanges Json[]
+  growthRate Float
+  demandLevel String
+  topSkills String[]
+  marketOutlook String
+  keyTrends String[]
+  recommendedSkills String[]
+}
+
+enum DemandLevel {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum MarketOutlook {
+  POSITIVE
+  NEGATIVE
+  NEUTRAL
+}
