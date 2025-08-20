@@ -21,13 +21,13 @@ model User {
   name            String?
   imageUrl        String?
   industry        String?
-  IndustryInsight IndustryInsights @relation(fields: [industry], references: [industry])
+  IndustryInsight IndustryInsights? @relation(fields: [industry], references: [industry])
   bio             String?
   skills          String[]
   experience      Int?
-  assessments     String[]
-  resume          String?
-  coverLetter     String[]
+  assessments     Assessments[]
+  resume          Resume?
+  coverLetter     CoverLetter[]
 }
 
 model Assessments {
@@ -47,7 +47,7 @@ model Assessments {
 model Resume {
   id String @id @default(uuid())
 
-  userId    String
+  userId    String @unique
   user      User     @relation(fields: [userId], references: [id])
   content   String
   createdAt DateTime @default(now())
@@ -75,9 +75,9 @@ model IndustryInsights {
   users User[]
   salaryRanges Json[]
   growthRate Float
-  demandLevel String
+  demandLevel DemandLevel
   topSkills String[]
-  marketOutlook String
+  marketOutlook MarketOutlook
   keyTrends String[]
   recommendedSkills String[]
 }

@@ -25,8 +25,12 @@ import {
   Pen,
   Sparkles,
 } from "lucide-react";
+import checkUser from "@/lib/checkUser";
 
 const Header = () => {
+
+  const user = checkUser();
+  console.log("user",user)
   return (
     <header className="flex justify-between items-center px-6 h-20 border-b border-gray-800 bg-black/30">
       {/* Logo Left */}
