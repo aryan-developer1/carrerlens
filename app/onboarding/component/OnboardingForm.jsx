@@ -67,7 +67,7 @@ export default function OnboardingForm() {
         experience: values.experience,
         skills: skillsArray,
       };
-
+          console.log("yha tak thik h ")
       const result = await updateUser(data);
 
       console.log("result", result);

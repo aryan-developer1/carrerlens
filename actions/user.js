@@ -3,6 +3,35 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import db from "@/lib/prisma";
+import { getIndustryInsights } from "./dashboard";
+
+export const checkIfUserIsOnboarded = async () => {
+  const { userId } = await auth(); // Clerk userId nikal liya
+
+  console.log("debugging", userId);
+
+  if (!userId) {
+    redirect("/sign-in"); // Agar user logged in nahi hai
+  }
+
+  const existingUser = await db.user.findUnique({
+    where: {
+      clerkId: userId,
+    },
+  });
+
+  if (!existingUser) {
+    return { success: false, error: "User not found" };
+  }
+
+  //if user is already onboarde redirect him to dashboard
+  if (existingUser.industry) {
+    console.log("User is already onboarded");
+    return true;
+  }
+
+  return false;
+};
 
 export const updateUser = async (data) => {
   const { userId } = await auth(); // Clerk userId nikal liya

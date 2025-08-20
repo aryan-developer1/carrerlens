@@ -25,6 +25,17 @@ export async function getIndustryInsights() {
   if (!existingUser) {
     return { success: false, error: "User not found" };
   }
+
+  //check if industry insights already exists for this user and add 7 days logic as well
+  // const alreadyAvailableIndustryInsights = await db.industryInsights.findUnique({
+  //   where: {
+  //     industry: `${existingUser.industry}`,
+  //   },
+  // });
+
+  // if (alreadyAvailableIndustryInsights) {
+  //   return alreadyAvailableIndustryInsights;
+  // }
   
   const prompt = `
             Analyze the current state of the ${existingUser.industry} industry and provide insights in ONLY the following JSON format without any additional notes or explanations:
