@@ -22,14 +22,6 @@ export const createMockInterview = async () => {
       return { success: false, message: "user not found!" };
     }
 
-    if (user.assessments && user.assessments.length > 0) {
-      return {
-        success: true,
-        message: "user interview prepared successfully",
-        assessments: user.assessments, // 👈 return assessments data
-      };
-    }
-
     const prompt = `
     Generate 10 technical interview questions for a ${
       user.industry
@@ -63,17 +55,6 @@ export const createMockInterview = async () => {
       .replace(/```(?:json)?\n?/g, "")
       .trim();
     const parsedResponse = JSON.parse(cleanedResponse);
-
-    //create this data in assesment schema
-    const assessment = await db.assessments.create({
-      data: {
-        userId: user.id,
-        questions: parsedResponse.questions,
-        category: user.industry,
-      },
-    });
-
-    console.log("assessment created", assessment);
 
     return {
       success: true,

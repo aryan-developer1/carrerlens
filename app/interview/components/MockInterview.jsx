@@ -19,12 +19,7 @@ const MockInterview = () => {
     console.log("data aa gaya", data)
     
     if (data?.success) {
-      // If user already has assessments, use existing questions
-      if (data?.assessments && data.assessments.length > 0) {
-        setInterviewQuestions(data.assessments[0].questions);
-      } 
-      // If new questions were generated
-      else if (data?.parsedResponse?.questions) {
+     if (data?.parsedResponse?.questions) {
         setInterviewQuestions(data.parsedResponse.questions);
       }
       setQuizStarted(true);
@@ -58,9 +53,10 @@ const MockInterview = () => {
             className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
           >
             <ArrowLeft size={20} />
-            <span>Back to Interview Preparation</span>
+            <span>Back to Interview </span>
           </button>
         </div>
+          
 
         {/* Header */}
         <div className="mb-8">
