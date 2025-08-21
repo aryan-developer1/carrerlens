@@ -15,7 +15,7 @@ const QuestionCard = ({
   onShowExplanation 
 }) => {
   return (
-    <div className="bg-gray-900 rounded-lg p-8 border border-gray-800 max-w-4xl mx-auto">
+    <div className=" rounded-lg p-8 border border-gray-800 max-w-4xl ">
       {/* Question Header */}
       <div className="mb-6">
         <p className="text-gray-400 text-sm mb-2">
