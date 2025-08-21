@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { TrendingUp, BarChart as BarChartIcon, Users, Award, Brain } from "lucide-react";
-import { PacmanLoader } from "react-spinners";
+
 import {
   BarChart,
   Bar,
