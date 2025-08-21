@@ -5,8 +5,10 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { onboardingSchema } from "@/schemas/onboarding_schema";
 import { industries } from "@/data/industries";
+import { updateUser } from "@/actions/user";
+import { useRouter } from "next/navigation";
 
-// ShadCN UI
+// UI
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -20,11 +22,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { updateUser } from "@/actions/user";
-import { useRouter } from "next/navigation";
+// Loader
+import { PacmanLoader } from "react-spinners";
 
 export default function OnboardingForm() {
-  const router = useRouter()
+  const router = useRouter();
+
   const {
     control,
     register,
@@ -50,8 +53,6 @@ export default function OnboardingForm() {
   );
 
   const onSubmit = async (values) => {
-    console.log("values", values);
-    
     try {
       const skillsArray = values.skillsText
         .split(",")
@@ -67,28 +68,36 @@ export default function OnboardingForm() {
         experience: values.experience,
         skills: skillsArray,
       };
-          console.log("yha tak thik h ")
+
       const result = await updateUser(data);
 
-      console.log("result", result);
-      
       if (result.success) {
-        console.log("User updated successfully:", result.data);
-        router.push("/dashboard");
+        router.push("/dashboard"); // ✅ redirect hoga, loader auto hide
       } else {
         console.error("Error updating user:", result.error);
-        // Handle error - don't redirect on error
       }
     } catch (error) {
       console.error("Unexpected error:", error);
     }
   };
 
+  // ✅ If submitting → show loader
+  if (isSubmitting) {
+    return (
+      <div className="flex flex-col justify-center items-center h-screen">
+        <PacmanLoader size={100} color="#36d7b7" />
+        <p className="text-white">Wait we are generating your insights...</p>
+      </div>
+    );
+  }
+
   return (
     <Card className="max-w-2xl mx-auto mt-6">
       <CardHeader>
         <CardTitle>Onboarding</CardTitle>
-        <CardDescription>Tell us about your background to personalize your journey.</CardDescription>
+        <CardDescription>
+          Tell us about your background to personalize your journey.
+        </CardDescription>
       </CardHeader>
 
       <CardContent>
@@ -132,7 +141,11 @@ export default function OnboardingForm() {
                   disabled={!selectedIndustry}
                 >
                   <SelectTrigger id="specialization">
-                    <SelectValue placeholder={selectedIndustry ? "Select specialization" : "Select industry first"} />
+                    <SelectValue
+                      placeholder={
+                        selectedIndustry ? "Select specialization" : "Select industry first"
+                      }
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     {(selectedIndustry?.subIndustries ?? []).map((s) => (
@@ -191,8 +204,8 @@ export default function OnboardingForm() {
 
           {/* Submit */}
           <div className="pt-2">
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? "Saving..." : "Save & Continue"}
+            <Button type="submit" className="w-full">
+              Save & Continue
             </Button>
           </div>
         </form>

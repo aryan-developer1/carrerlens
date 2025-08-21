@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { TrendingUp, BarChart as BarChartIcon, Users, Award, Brain } from "lucide-react";
+import { PacmanLoader } from "react-spinners";
 import {
   BarChart,
   Bar,
@@ -17,13 +18,7 @@ import {
 const DashboardView = ({ insights }) => {
   console.log("insights", insights);
 
-  if (!insights || insights.error) {
-    return (
-      <div className="text-center py-8">
-        <p className="text-gray-500">Loading insights...</p>
-      </div>
-    );
-  }
+
 
   // Helper function to get color based on value
   const getOutlookColor = (outlook) => {

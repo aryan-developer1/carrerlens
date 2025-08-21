@@ -231,7 +231,7 @@ const UserPreparationTracker = () => {
               <p className="text-muted-foreground mb-4">
                 Start your first quiz to track your progress
               </p>
-              <Button>
+              <Button className="cursor-pointer" onClick={() => router.push('/interview')}>
                 Take Your First Quiz
                 <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
