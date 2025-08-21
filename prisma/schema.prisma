@@ -34,7 +34,7 @@ model Assessments {
   id             String   @id @default(uuid()) // Unique quiz ID
   userId         String // Foreign key to User
   user           User     @relation(fields: [userId], references: [id]) // Relation to User
-  quizScore      Float // Overall quiz score
+  quizScore      Float? // Overall quiz score
   questions      Json[] // Array of {question, answer, userAnswer, isCorrect}
   category       String // "Technical", "Behavioral", etc.
   improvementTip String? // AI-generated improvement tip

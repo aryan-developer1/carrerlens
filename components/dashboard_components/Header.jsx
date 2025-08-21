@@ -75,23 +75,24 @@ const Header = () => {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
+              <Link href="/interview" className="flex items-center gap-2">
+                <Pen className="h-4 w-4" />
+                Mock Interview
+              </Link>
+            </DropdownMenuItem>
+            {/* <DropdownMenuItem asChild>
               <Link href="/resume" className="flex items-center gap-2">
                 <Newspaper className="h-4 w-4" />
-                AI Resume Builder
+                AI Resume Builder--working
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link href="/cover-letter" className="flex items-center gap-2">
                 <MailOpen className="h-4 w-4" />
-                AI Cover Letter
+                AI Cover Letter--working
               </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href="/mock-interview" className="flex items-center gap-2">
-                <Pen className="h-4 w-4" />
-                Mock Interview
-              </Link>
-            </DropdownMenuItem>
+            </DropdownMenuItem> */}
+           
           </DropdownMenuContent>
         </DropdownMenu>
 
