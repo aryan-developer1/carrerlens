@@ -92,7 +92,7 @@ export const saveAssessmentResults = async (resultsData) => {
         userId: user.id,
         quizScore: resultsData.quizScore,
         questions: resultsData.questions,
-        category: user.industry,
+        category: user.skills.join(","),
       },
     });
 

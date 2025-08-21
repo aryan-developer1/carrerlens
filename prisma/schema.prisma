@@ -20,8 +20,8 @@ model User {
   email           String           @unique
   name            String?
   imageUrl        String?
-  industry        String?
-  IndustryInsight IndustryInsights? @relation(fields: [industry], references: [industry])
+  industryId      String?          // Foreign key field
+  industry        IndustryInsights? @relation(fields: [industryId], references: [id]) 
   bio             String?
   skills          String[]
   experience      Int?

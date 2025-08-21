@@ -102,7 +102,7 @@ const QuizReviewModal = ({ isOpen, onClose, quizId }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl max-h-[90vh] p-0 flex flex-col">
+      <DialogContent className="w-[1400px] max-h-[90vh] p-0 flex flex-col">
         {/* Header (fixed at top) */}
         <DialogHeader className="p-6 pb-4 border-b flex-shrink-0">
           <DialogTitle className="text-2xl font-bold">Quiz Review</DialogTitle>
@@ -114,7 +114,7 @@ const QuizReviewModal = ({ isOpen, onClose, quizId }) => {
               variant={getScoreBadgeVariant(quizData.score)}
               className="text-lg px-3 py-1"
             >
-              {quizData.score.toFixed(1)}%
+              {quizData.score.toFixed(1)}
             </Badge>
           </div>
         </DialogHeader>
@@ -131,7 +131,7 @@ const QuizReviewModal = ({ isOpen, onClose, quizId }) => {
                 <div>
                   <p className="text-sm text-muted-foreground">Final Score</p>
                   <p className="font-semibold text-lg">
-                    {quizData.score.toFixed(1)}%
+                    {quizData.score.toFixed(1)}
                   </p>
                 </div>
               </div>
@@ -199,7 +199,7 @@ const QuizReviewModal = ({ isOpen, onClose, quizId }) => {
                   width: `${
                     ((currentQuestionIndex + 1) / quizData.questions.length) *
                     100
-                  }%`,
+                  }`,
                 }}
               ></div>
             </div>
@@ -259,7 +259,7 @@ const QuizReviewModal = ({ isOpen, onClose, quizId }) => {
                     </CardHeader>
                     <CardContent>
                       <p className="text-sm leading-relaxed text-foreground">
-                        {currentQuestion.answer}
+                        {currentQuestion.correctAnswer}
                       </p>
                     </CardContent>
                   </Card>

@@ -1,7 +1,7 @@
 
 import MockInterview from "./components/MockInterview"
 
-const page = async() => {
+const page = () => {
   return (
     <div>
       <MockInterview/>

@@ -1,9 +1,6 @@
-
 import {
   SignedIn,
   SignedOut,
-  SignInButton,
-  SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
 import Image from "next/image";
@@ -20,12 +17,11 @@ import {
 import {
   ChevronDown,
   LayoutDashboard,
-  MailOpen,
-  Newspaper,
   Pen,
   Sparkles,
 } from "lucide-react";
 import checkUser from "@/lib/checkUser";
+
 
 const Header = () => {
 
@@ -98,16 +94,8 @@ const Header = () => {
 
         {/* Auth Buttons */}
         <SignedOut>
-          <SignInButton>
-            <Button variant="outline" className="border-gray-600 text-white">
-              Sign In
-            </Button>
-          </SignInButton>
-          <SignUpButton>
-            <Button className="bg-[#6c47ff] text-white rounded-full">
-              Sign Up
-            </Button>
-          </SignUpButton>
+        <Button variant="outline" ><Link href="/sign-in">Sign In</Link></Button>
+        <Button ><Link href="/sign-up">Sign Up</Link></Button>
         </SignedOut>
 
         <SignedIn>

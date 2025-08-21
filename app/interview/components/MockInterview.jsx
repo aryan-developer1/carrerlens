@@ -1,13 +1,16 @@
 "use client"
 
 import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 import { BarLoader } from 'react-spinners';
 import { createMockInterview, saveAssessmentResults } from "@/actions/interview"
 import QuizContainer from './QuizContainer';
+import { useRouter } from 'next/navigation';
 
 const MockInterview = () => {
+
+  const router = useRouter();
 
   const [loading, setLoading] = useState(false);
   const [interviewQuestions, setInterviewQuestions] = useState([]);
@@ -53,7 +56,7 @@ const MockInterview = () => {
             className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
           >
             <ArrowLeft size={20} />
-            <span>Back to Interview </span>
+            <span>Back to Interview Preparation </span>
           </button>
         </div>
           
@@ -76,11 +79,15 @@ const MockInterview = () => {
   return (
     <div className="min-h-screen bg-black text-white p-16">
       {/* Back Button */}
-      <div className="mb-8">
-        <button className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+      <div className="mb-8 flex items-center justify-between">
+        <button  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
           <ArrowLeft size={20} />
           <span>Back to Interview Preparation</span>
         </button>
+        <Button className="cursor-pointer" variant="outline" size="sm" onClick={() => router.push('/interview/tracking')}>
+            Track Preparation
+            <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
       </div>
 
       {/* Main Content */}
@@ -102,7 +109,7 @@ const MockInterview = () => {
             </p>
             
             {/* Start Quiz Button */}
-            <Button onClick={handleStartQuiz} className="w-full bg-white text-black py-2 px-3 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+            <Button onClick={handleStartQuiz} className="w-full bg-white cursor-pointer text-black py-2 px-3 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
               Start Quiz
             </Button>
           </div>

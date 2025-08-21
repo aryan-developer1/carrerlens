@@ -85,7 +85,7 @@ export default function OnboardingForm() {
   };
 
   return (
-    <Card className="max-w-2xl mx-auto">
+    <Card className="max-w-2xl mx-auto mt-6">
       <CardHeader>
         <CardTitle>Onboarding</CardTitle>
         <CardDescription>Tell us about your background to personalize your journey.</CardDescription>

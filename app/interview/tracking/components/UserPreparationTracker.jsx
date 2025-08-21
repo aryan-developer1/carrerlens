@@ -12,7 +12,8 @@ import {
   Clock,
   Award,
   ChevronRight,
-  BarChart3
+  BarChart3,
+  ArrowLeft
 } from "lucide-react"
 import { getUserAssessmentData } from "@/actions/assessment"
 import QuizReviewModal from "./QuizReviewModal"
@@ -93,9 +94,12 @@ const UserPreparationTracker = () => {
 
   return (
     <div className="p-6 space-y-6 bg-background min-h-screen">
+
+      
       {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold text-foreground">Interview Preparation</h1>
+     
       </div>
 
       {/* Assessment Cards */}
@@ -110,7 +114,7 @@ const UserPreparationTracker = () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-foreground">
-              {assessmentData?.averageScore?.toFixed(1) || 0}%
+              {assessmentData?.averageScore?.toFixed(1) || 0}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
               Across all assessments
@@ -146,7 +150,7 @@ const UserPreparationTracker = () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-foreground">
-              {assessmentData?.latestScore?.toFixed(1) || 0}%
+              {assessmentData?.latestScore?.toFixed(1) || 0}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
               Most recent quiz
@@ -199,7 +203,7 @@ const UserPreparationTracker = () => {
                           variant={getScoreBadgeVariant(quiz.score)}
                           className="mb-1"
                         >
-                          {quiz.score.toFixed(1)}%
+                          {quiz.score.toFixed(1)}
                         </Badge>
                         <p className="text-xs text-muted-foreground">
                           {quiz.correctAnswers}/{quiz.totalQuestions} correct
