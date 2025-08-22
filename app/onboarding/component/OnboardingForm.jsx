@@ -85,7 +85,7 @@ export default function OnboardingForm() {
   if (isSubmitting) {
     return (
       <div className="flex flex-col gap-2 justify-center items-center h-screen">
-        <PacmanLoader size={100} color="#36d7b7" />
+        <PacmanLoader size={100} color="#ffffff" />
         <p className="text-white">Wait we are generating your insights...</p>
       </div>
     );

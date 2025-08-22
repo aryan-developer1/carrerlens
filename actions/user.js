@@ -21,7 +21,7 @@
     });
 
     if (!existingUser) {
-      return { success: false, error: "User not found" };
+      return false;
     }
 
     //if user is already onboarde redirect him to dashboard
