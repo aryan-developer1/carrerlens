@@ -5,66 +5,73 @@ import { Save, Download } from "lucide-react";
 import ResumeForm from "./ResumeForm";
 import Markdown from "./Markdown";
 import { useState, useRef } from "react";
-import html2pdf from "html2pdf.js";
+// Dynamic import for client-side only
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Resume = () => {
   const [resumeData, setResumeData] = useState({});
   const resumeRef = useRef();
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     const element = resumeRef.current;
 
     if (!element) return;
 
-    // Create a temporary style element to override problematic CSS
-    const style = document.createElement('style');
-    style.textContent = `
-      * {
-        color: #000000 !important;
-        background-color: #ffffff !important;
-        border-color: #000000 !important;
-      }
-      .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600, .text-gray-500 {
-        color: #000000 !important;
-      }
-      .text-blue-600, .text-blue-400 {
-        color: #0066cc !important;
-      }
-      .border-gray-800, .border-gray-300, .border-gray-200 {
-        border-color: #cccccc !important;
-      }
-      .bg-white {
-        background-color: #ffffff !important;
-      }
-      .shadow-lg {
-        box-shadow: none !important;
-      }
-    `;
-    document.head.appendChild(style);
+    try {
+      // Dynamic import for client-side only
+      const html2pdf = (await import('html2pdf.js')).default;
 
-    const opt = {
-      margin: [0.5, 0.5, 0.5, 0.5],
-      filename: `${resumeData?.name || "resume"}.pdf`,
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { 
-        scale: 2, 
-        useCORS: true, 
-        backgroundColor: "#ffffff",
-        logging: false,
-        allowTaint: true
-      },
-      jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
-    };
-    
-    html2pdf().set(opt).from(element).save().then(() => {
-      // Remove the temporary style after PDF generation
-      document.head.removeChild(style);
-    }).catch((error) => {
-      console.error('PDF generation failed:', error);
-      // Remove the temporary style even if PDF generation fails
-      document.head.removeChild(style);
-    });
+      // Create a temporary style element to override problematic CSS
+      const style = document.createElement('style');
+      style.textContent = `
+        * {
+          color: #000000 !important;
+          background-color: #ffffff !important;
+          border-color: #000000 !important;
+        }
+        .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600, .text-gray-500 {
+          color: #000000 !important;
+        }
+        .text-blue-600, .text-blue-400 {
+          color: #0066cc !important;
+        }
+        .border-gray-800, .border-gray-300, .border-gray-200 {
+          border-color: #cccccc !important;
+        }
+        .bg-white {
+          background-color: #ffffff !important;
+        }
+        .shadow-lg {
+          box-shadow: none !important;
+        }
+      `;
+      document.head.appendChild(style);
+
+      const opt = {
+        margin: [0.5, 0.5, 0.5, 0.5],
+        filename: `${resumeData?.name || "resume"}.pdf`,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { 
+          scale: 2, 
+          useCORS: true, 
+          backgroundColor: "#ffffff",
+          logging: false,
+          allowTaint: true
+        },
+        jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+      };
+      
+      html2pdf().set(opt).from(element).save().then(() => {
+        // Remove the temporary style after PDF generation
+        document.head.removeChild(style);
+      }).catch((error) => {
+        console.error('PDF generation failed:', error);
+        // Remove the temporary style even if PDF generation fails
+        document.head.removeChild(style);
+      });
+    } catch (error) {
+      console.error('Failed to load html2pdf:', error);
+    }
   };
 
   return (
