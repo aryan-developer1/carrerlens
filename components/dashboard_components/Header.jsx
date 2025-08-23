@@ -45,7 +45,7 @@ const Header = () => {
       <div className="flex items-center gap-4">
         {/* Industry Insights */}
         <Link href="/dashboard">
-          <Button className="bg-white text-black font-medium hover:bg-gray-200">
+          <Button className="bg-white text-black font-medium hover:bg-gray-200 cursor-pointer hover:text-black">
             <LayoutDashboard className="h-4 w-4 mr-2" />
             Industry Insights
           </Button>
