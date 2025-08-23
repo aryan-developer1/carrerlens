@@ -44,9 +44,9 @@ const HeroSection = () => {
 
       {/* Buttons */}
       <div className="mt-8 flex gap-4">
-        <Button size="lg">Get Started</Button>
+        <Button size="lg">Hard Work</Button>
         <Button size="lg" variant="outline">
-          Get Started
+          Smart Work
         </Button>
       </div>
 

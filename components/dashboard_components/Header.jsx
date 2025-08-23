@@ -17,6 +17,7 @@ import {
 import {
   ChevronDown,
   LayoutDashboard,
+  Newspaper,
   Pen,
   Sparkles,
 } from "lucide-react";
@@ -76,13 +77,13 @@ const Header = () => {
                 Mock Interview
               </Link>
             </DropdownMenuItem>
-            {/* <DropdownMenuItem asChild>
+            <DropdownMenuItem asChild>
               <Link href="/resume" className="flex items-center gap-2">
                 <Newspaper className="h-4 w-4" />
-                AI Resume Builder--working
+                AI Resume Builder
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem asChild>
+            {/* <DropdownMenuItem asChild>
               <Link href="/cover-letter" className="flex items-center gap-2">
                 <MailOpen className="h-4 w-4" />
                 AI Cover Letter--working
