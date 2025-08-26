@@ -17,6 +17,7 @@ import {
 import {
   ChevronDown,
   LayoutDashboard,
+  MailOpen,
   Newspaper,
   Pen,
   Sparkles,
@@ -83,12 +84,12 @@ const Header = () => {
                 AI Resume Builder
               </Link>
             </DropdownMenuItem>
-            {/* <DropdownMenuItem asChild>
+            <DropdownMenuItem asChild>
               <Link href="/cover-letter" className="flex items-center gap-2">
                 <MailOpen className="h-4 w-4" />
-                AI Cover Letter--working
+                AI Cover Letter
               </Link>
-            </DropdownMenuItem> */}
+            </DropdownMenuItem>
            
           </DropdownMenuContent>
         </DropdownMenu>
